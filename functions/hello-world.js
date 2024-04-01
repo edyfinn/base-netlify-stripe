@@ -6,7 +6,7 @@ exports.handler = async () => {
     };*/
 
     const mySecret = process.env.STRIPE_SECRET_KEY;
-    const mySecret1 = process.env.FAUNA_SERVER_KEY
+    const mySecret1 = process.env.FAUNA_SERVER_KEY_V10
     const mySecret2 = process.env.STRIPE_DEFAULT_PRICE_PLAN
     return {
       statusCode: 200,
