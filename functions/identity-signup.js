@@ -1,5 +1,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { faunaFetch } = require('./utils/fauna');
+const faunaDB = require('faunadb');
+var q = faunaDB.query
 
 exports.handler = async (event) => {
   const { user } = JSON.parse(event.body);
@@ -18,8 +20,18 @@ exports.handler = async (event) => {
   });
 
 
+  var client = new faunaDB.Client({
+    secret: process.env.FAUNA_BD_STRIPE,
+    domain: 'db.eu.fauna.com',
+     scheme: 'https',
+  });
+
+  var createP = client.query(
+    q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: 'Cliente_Netlify_hola' , stripeID: 'Cliente_Sprite_hola' } })
+  );
+
   // store the Netlify and Stripe IDs in Fauna
-  faunaFetch();
+  //await faunaFetch();
 
   return {
     statusCode: 200,
