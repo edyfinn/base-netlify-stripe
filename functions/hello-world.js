@@ -33,3 +33,5 @@ exports.handler = async () => {
       body: `La clave de stripe es: ${mySecret} \n ${mySecret1} \n ${mySecret2} \n ${createP}`
     };
   };
+
+  

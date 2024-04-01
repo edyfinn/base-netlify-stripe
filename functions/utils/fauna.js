@@ -1,10 +1,11 @@
 const fetch = require('node-fetch');
-import { Client, fql, FaunaError } from "faunadb";
+const faunaDB = require('faunadb');
+var q = faunaDB.query
 
 
 //const client = new Client();
 // To configure your client:
-const client = new Client({
+/*const client = new Client({
    secret: process.env.FAUNA_BD_STRIPE,
    domain: 'db.eu.fauna.com',
     scheme: 'https',
@@ -12,13 +13,35 @@ const client = new Client({
  var q = faunadb.query;
 
  const collectionName = "UsuariosBuenos";
- const collectionExists = (name) => fql`Collection.byName(${name}) != null`;
+ const collectionExists = (name) => fql`Collection.byName(${name}) != null`;*/
  // Build query that uses the previous var and sub-query
- exports.faunaFetch = async () => {
-  const respuesta = await  client.query(
+ exports.faunaFetch = async ({ query, variables }) => {
+  
+  var datos = JSON.stringify({
+    query,
+    variables,
+  });
+
+  alert(datos);
+  var client = new faunaDB.Client({
+    secret: process.env.FAUNA_BD_STRIPE,
+    domain: 'db.eu.fauna.com',
+     scheme: 'https',
+  })
+
+  var createP = client.query(
+    q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: datos.variables.netlifyID , stripeID: 'Cliente_Sprite_ID' } })
+  )
+
+  return {
+    statusCode: 200,
+    body: `Datos llegan: ${datos}`
+  };
+
+  /*const respuesta = await  client.query(
     q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: 'testValue' , stripeID: 'Testeo' } })
   );
-  alert(respuesta);
+  alert(respuesta);*/
 
     /*const upsertCollectionQuery = fql`
     if (${collectionExists(collectionName)}) {
