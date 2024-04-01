@@ -35,7 +35,7 @@ var q = faunaDB.query
 
   return {
     statusCode: 200,
-    body: `Datos OK`
+    body: `Datos OK: ${createP}`
   };
 
   /*const respuesta = await  client.query(
@@ -56,7 +56,7 @@ var q = faunaDB.query
     console.log(response.data);
 
     client.close();*/
- }
+ };
 
 
 
