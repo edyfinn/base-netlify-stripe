@@ -4,7 +4,7 @@ exports.faunaFetch = async ({ query, variables }) => {
   return await fetch('https://db.eu.fauna.com/', { //https://graphql.eu.fauna.com/graphql
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${process.env.FAUNA_SERVER_KEY}`,
+      Authorization: `Bearer ${process.env.FAUNA_SERVER_KEY_V10}`,
     },
     body: JSON.stringify({
       query,
