@@ -16,11 +16,11 @@ exports.handler = async () => {
       secret: process.env.FAUNA_BD_STRIPE,
       domain: 'db.eu.fauna.com',
        scheme: 'https',
-    })
+    });
 
     var createP = client.query(
-      q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: 'Cliente_Netlify' , stripeID: 'Cliente_Sprite' } })
-    )
+      q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: 'Cliente_Netlify_hola' , stripeID: 'Cliente_Sprite_hola' } })
+    );
 
     
     /*createP.then(function(response) {
@@ -34,4 +34,3 @@ exports.handler = async () => {
     };
   };
 
-  

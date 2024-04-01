@@ -19,12 +19,7 @@ exports.handler = async (event) => {
 
 
   // store the Netlify and Stripe IDs in Fauna
-  await faunaFetch({
-    variables: {
-      netlifyID: user.id,
-      stripeID: customer.id,
-    },
-  });
+  faunaFetch();
 
   return {
     statusCode: 200,

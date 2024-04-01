@@ -15,7 +15,7 @@ var q = faunaDB.query;
  const collectionName = "UsuariosBuenos";
  const collectionExists = (name) => fql`Collection.byName(${name}) != null`;*/
  // Build query that uses the previous var and sub-query
- exports.faunaFetch = async ({ /*query,*/ variables }) => {
+ exports.faunaFetch = async ({ /*query, variables*/ }) => {
   
   /*var datos = JSON.stringify({
     query,
@@ -27,11 +27,11 @@ var q = faunaDB.query;
     secret: process.env.FAUNA_BD_STRIPE,
     domain: 'db.eu.fauna.com',
      scheme: 'https',
-  })
+  });
 
   var createP = client.query(
     q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: 'Cliente_Netlify_ID_ID' , stripeID: 'Cliente_Sprite_ID_ID' } })
-  )
+  );
 
   return {
     statusCode: 200,
