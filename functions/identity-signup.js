@@ -27,7 +27,7 @@ exports.handler = async (event) => {
   });
 
   await client.query(
-    q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: 'Cliente_Netlify_hola' , stripeID: 'Cliente_Sprite_hola' } })
+    q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: user.id , stripeID: customer.id } })
   );
 
   // store the Netlify and Stripe IDs in Fauna
