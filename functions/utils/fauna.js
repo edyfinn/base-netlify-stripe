@@ -30,13 +30,13 @@ var q = faunaDB.query
   })
 
   var createP = client.query(
-    q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: JSON.stringify(variables) , stripeID: 'Cliente_Sprite_ID_ID' } })
+    q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: 'Cliente_Netlify_ID_ID' , stripeID: 'Cliente_Sprite_ID_ID' } })
   )
 
-  /*return {
+  return {
     statusCode: 200,
-    body: `Datos llegan: ${datos}`
-  };*/
+    body: `Datos OK`
+  };
 
   /*const respuesta = await  client.query(
     q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: 'testValue' , stripeID: 'Testeo' } })
