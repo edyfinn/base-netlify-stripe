@@ -26,7 +26,7 @@ exports.handler = async (event) => {
      scheme: 'https',
   });
 
-  var createP = client.query(
+  await client.query(
     q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: 'Cliente_Netlify_hola' , stripeID: 'Cliente_Sprite_hola' } })
   );
 
