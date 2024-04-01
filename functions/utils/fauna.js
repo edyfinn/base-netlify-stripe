@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 const faunaDB = require('faunadb');
-var q = faunaDB.query
+var q = faunaDB.query;
 
 
 //const client = new Client();
@@ -15,7 +15,7 @@ var q = faunaDB.query
  const collectionName = "UsuariosBuenos";
  const collectionExists = (name) => fql`Collection.byName(${name}) != null`;*/
  // Build query that uses the previous var and sub-query
- exports.faunaFetch = async ({ query, variables }) => {
+ exports.faunaFetch = async ({ /*query,*/ variables }) => {
   
   /*var datos = JSON.stringify({
     query,
