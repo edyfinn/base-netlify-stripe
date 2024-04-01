@@ -17,12 +17,12 @@ var q = faunaDB.query
  // Build query that uses the previous var and sub-query
  exports.faunaFetch = async ({ query, variables }) => {
   
-  var datos = JSON.stringify({
+  /*var datos = JSON.stringify({
     query,
     variables,
-  });
+  });*/
 
-  alert(datos);
+  //alert(datos);
   var client = new faunaDB.Client({
     secret: process.env.FAUNA_BD_STRIPE,
     domain: 'db.eu.fauna.com',
@@ -30,13 +30,13 @@ var q = faunaDB.query
   })
 
   var createP = client.query(
-    q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: datos.variables.netlifyID , stripeID: 'Cliente_Sprite_ID' } })
+    q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: JSON.stringify(variables) , stripeID: 'Cliente_Sprite_ID_ID' } })
   )
 
-  return {
+  /*return {
     statusCode: 200,
     body: `Datos llegan: ${datos}`
-  };
+  };*/
 
   /*const respuesta = await  client.query(
     q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: 'testValue' , stripeID: 'Testeo' } })
