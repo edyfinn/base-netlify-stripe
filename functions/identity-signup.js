@@ -23,12 +23,6 @@ exports.handler = async (event) => {
   // subscribe the new customer to the plan con 10 días de prueba
   await stripe.subscriptions.create({
     customer: customer.id,
-    trial_settings: [
-      {
-        end_behavor:{missing_payment_method: "pause"}
-      }
-    ],
-    trial_start: timestampHoy,
     items: [
       {
         price: process.env.STRIPE_DEFAULT_PRICE_PLAN,
