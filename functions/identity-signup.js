@@ -25,7 +25,7 @@ exports.handler = async (event) => {
     customer: customer.id,
     items: [
       {
-        price: process.env.STRIPE_DEFAULT_PRICE_PLAN,
+        price: process.env.STRIPE_BASE_PLAN,
       },
     ],
     trial_period_days: 10,
@@ -57,7 +57,7 @@ exports.handler = async (event) => {
     statusCode: 200,
     body: JSON.stringify({
       app_metadata: {
-        roles: ['free'],
+        roles: ['base'],
       },
     }),
   };
