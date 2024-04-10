@@ -9,28 +9,48 @@ exports.handler = async (event) => {
   // create a new customer in Stripe
   const customer = await stripe.customers.create({ name: user.user_metadata.full_name, email: user.email, });
 
-  // subscribe the new customer to the free plan
+  var hoy = new Date();
+  var diezDiasMas = new Date();
+  diezDiasMas.setDate(hoy.getDate()+10);
+  //console.log("Hoy: " + hoy);
+  //console.log("10 días más: " + diezDiasMas);
+
+  var timestamp10Dias = diezDiasMas.getTime();
+  console.log(timestamp10Dias);
+  const timestampHoy = Date.now();
+  console.log(timestampHoy);
+
+  // subscribe the new customer to the plan con 10 días de prueba
   await stripe.subscriptions.create({
     customer: customer.id,
+    trial_settings: [
+      {
+        end_behavor:{missing_payment_method: "pause"}
+      }
+    ],
+    trial_start: timestampHoy,
     items: [
       {
         price: process.env.STRIPE_DEFAULT_PRICE_PLAN,
       },
     ],
+    trial_end: timestamp10Dias,
   });
 
 
+  //Conexión faunaDB
   var client = new faunaDB.Client({
     secret: process.env.FAUNA_BD_STRIPE,
     domain: 'db.eu.fauna.com',
-     scheme: 'https',
+    scheme: 'https',
   });
 
+  // store the Netlify and Stripe IDs in Fauna
   await client.query(
     q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: user.id , stripeID: customer.id } })
   );
 
-  // store the Netlify and Stripe IDs in Fauna
+  
   //await faunaFetch();
 
   return {
