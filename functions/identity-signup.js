@@ -29,6 +29,12 @@ exports.handler = async (event) => {
       },
     ],
     trial_period_days: 10,
+    trial_settings:
+     {
+      end_behavior: {
+        missing_payment_method: 'pause'
+      }
+    },
   });
 
 
