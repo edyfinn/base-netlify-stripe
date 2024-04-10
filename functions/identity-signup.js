@@ -28,6 +28,7 @@ exports.handler = async (event) => {
         price: process.env.STRIPE_DEFAULT_PRICE_PLAN,
       },
     ],
+    trial_end: 1713639582441,
   });
 
 
