@@ -9,7 +9,7 @@ exports.handler = async (event) => {
   // create a new customer in Stripe
   const customer = await stripe.customers.create({ name: user.user_metadata.full_name, email: user.email, });
 
-  var hoy = new Date();
+  /*var hoy = new Date();
   var diezDiasMas = new Date();
   diezDiasMas.setDate(hoy.getDate()+10);
   //console.log("Hoy: " + hoy);
@@ -18,7 +18,7 @@ exports.handler = async (event) => {
   var timestamp10Dias = diezDiasMas.getTime();
   console.log(timestamp10Dias);
   const timestampHoy = Date.now();
-  console.log(timestampHoy);
+  console.log(timestampHoy);*/
 
   // subscribe the new customer to the plan con 10 días de prueba
   await stripe.subscriptions.create({
@@ -28,7 +28,6 @@ exports.handler = async (event) => {
         price: process.env.STRIPE_DEFAULT_PRICE_PLAN,
       },
     ],
-    trial_end: timestamp10Dias,
   });
 
 
