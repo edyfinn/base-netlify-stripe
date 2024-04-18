@@ -32,7 +32,7 @@ exports.handler = async (_event, context) => {
   const { stripeID } = JSON.stringify(respuesta[0]);//result.data.getUserByNetlifyID;
   
   const link = await stripe.billingPortal.sessions.create({
-    customer: stripeID,
+    customer: 'cus_PuE4Xz1gYEVFRT',
     return_url: process.env.URL,
   });
 
