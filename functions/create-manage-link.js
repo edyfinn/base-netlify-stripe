@@ -32,17 +32,17 @@ exports.handler = async (_event, context) => {
 
   const { stripeID } = JSON.stringify(respuesta[0]);//result.data.getUserByNetlifyID;
   
-  const link = await stripe.billingPortal.sessions.create({
+  /*const link = await stripe.billingPortal.sessions.create({
     customer: 'cus_PwYnbMVoqWrrvc',
     return_url: process.env.URL,
-  });
+  });*/
 
   //const [someResult, anotherResult] = await Promise.all([printNumber1(), printNumber2()]);
-  const [Promise1Result, Promise2Result] = await Promise.allSettled([Promise1(user.sub), Promise2()]);
+  const [link,Promise1Result] = await Promise.allSettled([Promise1(user.sub), Promise2()]);
 
-  console.log(Promise1Result); // {status: "rejected", reason: "Success!"}
+  /*console.log(Promise1Result); // {status: "rejected", reason: "Success!"}
   console.log(Promise2Result); // {status: "fulfilled", value: "Success!"}
-
+*/
   return {
     statusCode: 200,
     //body: `Respuesta Query faunaDB: ${JSON.stringify(respuesta[0])}\n Usuario: ${JSON.stringify(user)}`,
@@ -51,8 +51,11 @@ exports.handler = async (_event, context) => {
 };
 
 async function Promise1(cliente) {
-  console.log(cliente);
-  return "Success! " + cliente;
+  const link = await stripe.billingPortal.sessions.create({
+    customer: 'cus_PwYnbMVoqWrrvc',
+    return_url: process.env.URL,
+  });
+  return link;
 }
 
 async function Promise2() {
