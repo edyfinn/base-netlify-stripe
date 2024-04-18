@@ -127,7 +127,7 @@
           .then((res) => res.json())
           .then((link) => {
             //alert(JSON.stringify(link));
-            window.location.href = JSON.stringify(link.value.url);
+            window.location.href = JSON.stringify(link.url);
           })
           .catch((err) => console.error(err));
       });
