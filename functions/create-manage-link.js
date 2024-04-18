@@ -7,8 +7,9 @@ exports.handler = async (_event, context) => {
   const { user } = context.clientContext;
 
   console.log(JSON.stringify(user.sub));
-  const [link, link1] = await Promise.allSettled([getClienteStripe(user.sub), getLinkPago(getClienteStripe(user.sub))]);
+  const [spriteID, link1] = await Promise.allSettled([getClienteStripe(user.sub), getLinkPago(user.sub)]);
 
+  console.log(spriteID);
   /*var client = new faunaDB.Client({
     secret: process.env.FAUNA_BD_STRIPE,
     domain: 'db.eu.fauna.com',
@@ -49,20 +50,14 @@ exports.handler = async (_event, context) => {
   return {
     statusCode: 200,
     //body: `Respuesta Query faunaDB: ${JSON.stringify(respuesta[0])}\n Usuario: ${JSON.stringify(user)}`,
-    body: JSON.stringify(link.value.url),
+    body: JSON.stringify(link1.value.url),
   };
 };
 
 async function getLinkPago(cliente) {
-  /*return new Promise((resolve,reject) => {
-    setTimeout(() => {
-    console.log("Number1 is done");
-    resolve(10);
-    },1000);
- });*/
  console.log(cliente);
   const link = await stripe.billingPortal.sessions.create({
-    customer: cliente,
+    customer: 'cus_PwYnbMVoqWrrvc',
     return_url: process.env.URL,
   });
   return link;
@@ -80,11 +75,11 @@ async function getClienteStripe(id_netlify) {
   );
 
   var parseID = JSON.stringify(respuesta.value[0]);
-  const link = await stripe.billingPortal.sessions.create({
+  /*const link = await stripe.billingPortal.sessions.create({
     customer: parseID,
     return_url: process.env.URL,
-  });
-  return link;
+  });*/
+  return parseID;
 
   //console.log(JSON.stringify(respuesta[0]))
   //return JSON.stringify(respuesta.value[0]);
