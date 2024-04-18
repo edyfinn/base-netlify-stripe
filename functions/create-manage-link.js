@@ -6,7 +6,9 @@ var q = faunaDB.query;
 exports.handler = async (_event, context) => {
   const { user } = context.clientContext;
 
-  var client = new faunaDB.Client({
+  const [stripeID, link] = await Promise.allSettled([getClienteStripe(user.sub), getLinkPago(stripeID)]);
+
+  /*var client = new faunaDB.Client({
     secret: process.env.FAUNA_BD_STRIPE,
     domain: 'db.eu.fauna.com',
     scheme: 'https',
@@ -15,7 +17,7 @@ exports.handler = async (_event, context) => {
   
   const respuesta = await client.query(
     q.Select('data', q.Paginate(q.Match(q.Index('getUsuarioNetlifyID'), 'ba31a0e6-dac9-425a-9b46-246dfd4e906f')))
-  );
+  );*/
 
   /*const result = await faunaFetch({
     query: `
@@ -30,12 +32,12 @@ exports.handler = async (_event, context) => {
     },
   });*/
 
-  const { stripeID } = JSON.stringify(respuesta[0]);//result.data.getUserByNetlifyID;
+  /*const { stripeID } = JSON.stringify(respuesta[0]);//result.data.getUserByNetlifyID;
   
   const link = await stripe.billingPortal.sessions.create({
     customer: 'cus_PwYnbMVoqWrrvc',
     return_url: process.env.URL,
-  });
+  });*/
 
   //const [someResult, anotherResult] = await Promise.all([printNumber1(), printNumber2()]);
   //const [link,Promise1Result] = await Promise.allSettled([Promise1(user.sub), Promise2()]);
@@ -49,6 +51,35 @@ exports.handler = async (_event, context) => {
     body: JSON.stringify(link.url),
   };
 };
+
+async function getLinkPago(cliente) {
+  /*return new Promise((resolve,reject) => {
+    setTimeout(() => {
+    console.log("Number1 is done");
+    resolve(10);
+    },1000);
+ });*/
+ console.log(cliente);
+  const link = await stripe.billingPortal.sessions.create({
+    customer: cliente,
+    return_url: process.env.URL,
+  });
+  return link;
+}
+
+async function getClienteStripe(id_netlify) {
+  var client = new faunaDB.Client({
+    secret: process.env.FAUNA_BD_STRIPE,
+    domain: 'db.eu.fauna.com',
+    scheme: 'https',
+  });
+
+  const respuesta = await client.query(
+    q.Select('data', q.Paginate(q.Match(q.Index('getUsuarioNetlifyID'), id_netlify)))
+  );
+  //console.log(JSON.stringify(respuesta[0]))
+  return respuesta;
+}
 
 async function Promise1(cliente) {
   /*return new Promise((resolve,reject) => {
