@@ -51,7 +51,7 @@ exports.handler = async (_event, context) => {
   return {
     statusCode: 200,
     //body: `Respuesta Query faunaDB: ${JSON.stringify(respuesta[0])}\n Usuario: ${JSON.stringify(user)}`,
-    body: JSON.stringify(link1.value.url),
+    body: JSON.stringify(spri.value.url),
     //body: JSON.stringify(spri[0]),
   };
 };
@@ -81,7 +81,7 @@ async function getClienteStripe(id_netlify) {
     customer: respuesta[0],
     return_url: process.env.URL,
   });
-  
+
   return link;
 
   //console.log(JSON.stringify(respuesta[0]))
