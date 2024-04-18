@@ -12,7 +12,7 @@ exports.handler = async (_event, context) => {
     scheme: 'https',
   });
 
-  let respuesta = await client.query(
+  let respuesta = client.query(
     q.Select('data', q.Paginate(q.Match(q.Index('getUsuarioNetlifyID'), 'ba31a0e6-dac9-425a-9b46-246dfd4e906f')))
   );
 
@@ -32,7 +32,7 @@ exports.handler = async (_event, context) => {
   const { stripeID } = JSON.stringify(respuesta[0]);//result.data.getUserByNetlifyID;
   
   const link = await stripe.billingPortal.sessions.create({
-    customer: JSON.stringify(respuesta[0]),
+    customer: stripeID,
     return_url: process.env.URL,
   });
 
