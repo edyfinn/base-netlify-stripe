@@ -13,7 +13,7 @@ exports.handler = async (_event, context) => {
   });
 
   const respuesta = await client.query(
-    q.Select('data', q.Paginate(q.Match(q.Index('getUsuarioNetlifyID'), 'ba31a0e6-dac9-425a-9b46-246dfd4e906f')))
+    q.Select('data', q.Paginate(q.Match(q.Index('getUsuarioNetlifyID'), user.sub)))
   );
 
   /*const result = await faunaFetch({
@@ -32,7 +32,7 @@ exports.handler = async (_event, context) => {
   const { stripeID } = JSON.stringify(respuesta[0]);//result.data.getUserByNetlifyID;
   
   const link = await stripe.billingPortal.sessions.create({
-    customer: 'cus_PwYnbMVoqWrrvc',
+    customer: stripeID,
     return_url: process.env.URL,
   });
 
