@@ -12,8 +12,9 @@ exports.handler = async (_event, context) => {
     scheme: 'https',
   });
 
+  
   const respuesta = await client.query(
-    q.Select('data', q.Paginate(q.Match(q.Index('getUsuarioNetlifyID'), user.sub)))
+    q.Select('data', q.Paginate(q.Match(q.Index('getUsuarioNetlifyID'), 'ba31a0e6-dac9-425a-9b46-246dfd4e906f')))
   );
 
   /*const result = await faunaFetch({
@@ -32,9 +33,15 @@ exports.handler = async (_event, context) => {
   const { stripeID } = JSON.stringify(respuesta[0]);//result.data.getUserByNetlifyID;
   
   const link = await stripe.billingPortal.sessions.create({
-    customer: stripeID,
+    customer: 'cus_PwYnbMVoqWrrvc',
     return_url: process.env.URL,
   });
+
+  //const [someResult, anotherResult] = await Promise.all([printNumber1(), printNumber2()]);
+  const [Promise1Result, Promise2Result] = await Promise.allSettled([Promise1(user.sub), Promise2()]);
+
+  console.log(Promise1Result); // {status: "rejected", reason: "Success!"}
+  console.log(Promise2Result); // {status: "fulfilled", value: "Success!"}
 
   return {
     statusCode: 200,
@@ -42,3 +49,32 @@ exports.handler = async (_event, context) => {
     body: JSON.stringify(link.url),
   };
 };
+
+async function Promise1(cliente) {
+  console.log(cliente);
+  return "Success! " + cliente;
+}
+
+async function Promise2() {
+  return "Success!";
+}
+
+
+
+function printNumber1() {
+  return new Promise((resolve,reject) => {
+     setTimeout(() => {
+     console.log("Number1 is done");
+     resolve(10);
+     },1000);
+  });
+}
+
+function printNumber2() {
+  return new Promise((resolve,reject) => {
+     setTimeout(() => {
+     console.log("Number2 is done");
+     resolve(20);
+     },500);
+  });
+}
