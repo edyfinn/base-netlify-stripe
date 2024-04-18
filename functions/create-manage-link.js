@@ -7,8 +7,8 @@ exports.handler = async (_event, context) => {
   const { user } = context.clientContext;
 
   console.log(JSON.stringify(user.sub));
-  const [spriteID, link1] = await Promise.allSettled([getClienteStripe(user.sub), getLinkPago(spriteID)]);
-
+  //const [spriteID, link1] = await Promise.allSettled([getClienteStripe(user.sub), getLinkPago(spriteID)]);
+  const [spriteID] = await Promise.allSettled([getClienteStripe(user.sub)]);
   var spri = await getLinkPago(spriteID);
   console.log(spriteID);
   /*var client = new faunaDB.Client({
