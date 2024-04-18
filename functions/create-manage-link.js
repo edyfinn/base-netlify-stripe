@@ -48,7 +48,7 @@ exports.handler = async (_event, context) => {
   return {
     statusCode: 200,
     //body: `Respuesta Query faunaDB: ${JSON.stringify(respuesta[0])}\n Usuario: ${JSON.stringify(user)}`,
-    body: JSON.stringify(link1.url),
+    body: JSON.stringify(link1.value.url),
   };
 };
 
