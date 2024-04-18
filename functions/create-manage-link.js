@@ -52,7 +52,7 @@ exports.handler = async (_event, context) => {
     statusCode: 200,
     //body: `Respuesta Query faunaDB: ${JSON.stringify(respuesta[0])}\n Usuario: ${JSON.stringify(user)}`,
     //body: JSON.stringify(link1.value.url),
-    body: JSON.stringify(spri),
+    body: JSON.stringify(spri.value[0]),
   };
 };
 
@@ -76,12 +76,12 @@ async function getClienteStripe(id_netlify) {
     q.Select('data', q.Paginate(q.Match(q.Index('getUsuarioNetlifyID'), id_netlify)))
   );
 
-  var parseID = JSON.stringify(respuesta.value[0]);
+  //var parseID = JSON.stringify(respuesta.value[0]);
   /*const link = await stripe.billingPortal.sessions.create({
     customer: parseID,
     return_url: process.env.URL,
   });*/
-  return parseID;
+  return respuesta;
 
   //console.log(JSON.stringify(respuesta[0]))
   //return JSON.stringify(respuesta.value[0]);
