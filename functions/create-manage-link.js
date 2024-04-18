@@ -9,6 +9,7 @@ exports.handler = async (_event, context) => {
   console.log(JSON.stringify(user.sub));
   const [spriteID, link1] = await Promise.allSettled([getClienteStripe(user.sub), getLinkPago(spriteID)]);
 
+  var spri = await getLinkPago(spriteID);
   console.log(spriteID);
   /*var client = new faunaDB.Client({
     secret: process.env.FAUNA_BD_STRIPE,
@@ -51,7 +52,7 @@ exports.handler = async (_event, context) => {
     statusCode: 200,
     //body: `Respuesta Query faunaDB: ${JSON.stringify(respuesta[0])}\n Usuario: ${JSON.stringify(user)}`,
     //body: JSON.stringify(link1.value.url),
-    body: JSON.stringify(user.sub),
+    body: JSON.stringify(spri.value.url),
   };
 };
 
