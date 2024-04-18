@@ -16,7 +16,7 @@ exports.handler = async (_event, context) => {
     q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: 'Cliente_Netlify_hola' , stripeID: 'Cliente_Sprite_hola' } })
   );*/
 
-
+  console.log("Usuario: " + user.sub);
   var respuesta = await client.query(
     q.Map(
         q.Paginate(
