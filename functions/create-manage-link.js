@@ -38,7 +38,7 @@ exports.handler = async (_event, context) => {
 
   return {
     statusCode: 200,
-    //body: `Respuesta Query faunaDB: ${stripeID}`,
-    body: JSON.stringify(link.url),
+    body: `Respuesta Query faunaDB: ${user.sub}`,
+    //body: JSON.stringify(link.url),
   };
 };
