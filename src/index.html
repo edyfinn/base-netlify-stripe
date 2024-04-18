@@ -60,11 +60,11 @@
 
 <div class="corgi-content">
   <div class="content">
-    <h2>Free Content</h2>
-    <div class="free"></div>
+    <h2>Base Content</h2>
+    <div class="base"></div>
   </div>
   <div class="content">
-    <h2>Pro Content</h2>
+    <h2>Free Content</h2>
     <div class="pro"></div>
   </div>
   <div class="content">
@@ -116,6 +116,7 @@
 
       b2.innerText = 'Manage Subscription';
       b2.addEventListener('click', () => {
+        console.log("Prueba");
         // TODO handle subscription management
         fetch('/.netlify/functions/create-manage-link', {
           method: 'POST',
@@ -145,7 +146,7 @@
 
   const loadSubscriptionContent = async (user) => {
     const token = user ? await netlifyIdentity.currentUser().jwt(true) : false;
-    ['free', 'pro', 'premium'].forEach((type) => {
+    ['base', 'free', 'premium'].forEach((type) => {
       fetch('/.netlify/functions/get-protected-content', {
         method: 'POST',
         headers: {

@@ -1,14 +1,14 @@
 const content = {
-  free: {
+  base: {
     src:
       '/images/thesubs_logo.png',
     alt: 'corgi in the park with a sunset in the background',
     credit: 'Jacob Van Blarcom',
     creditLink: 'https://unsplash.com/photos/lkzjENdWgd8',
     message: 'To view this content, you need to create an account!',
-    allowedRoles: ['free', 'pro', 'premium'],
+    allowedRoles: ['base', 'free', 'premium'],
   },
-  pro: {
+  free: {
     src:
       'https://images.unsplash.com/photo-1519098901909-b1553a1190af?auto=format&fit=crop&w=600&h=600&q=80',
     alt: 'close-up of a corgi with its tongue hanging out',
@@ -16,7 +16,7 @@ const content = {
     creditLink: 'https://unsplash.com/photos/yxmNWxi3wCo',
     message:
       'This is protected content! It’s only available if you have a pro plan or higher.',
-    allowedRoles: ['pro', 'premium'],
+    allowedRoles: ['free', 'premium'],
   },
   premium: {
     src:
