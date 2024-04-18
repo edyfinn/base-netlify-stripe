@@ -45,7 +45,7 @@ exports.handler = async () => {
       statusCode: 200,
       //body: `La clave de stripe es: ${mySecret} \n ${mySecret1} \n ${mySecret2} \n ${createP}`,
       //body: `Respuesta Query faunaDB: ${JSON.stringify(respuesta[0])}`,
-      body: `Respuesta Query en PARALELO: ${JSON.stringify(link)}`,
+      body: `Respuesta Query en PARALELO: ${JSON.stringify(link.url)} \n ${stripeID}`,
     };
 };
 
