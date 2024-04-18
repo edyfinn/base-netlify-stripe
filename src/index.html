@@ -126,7 +126,7 @@
         })
           .then((res) => res.json())
           .then((link) => {
-            alert(link);
+            alert(JSON.stringify(link));
             //window.location.href = link;
           })
           .catch((err) => console.error(err));
