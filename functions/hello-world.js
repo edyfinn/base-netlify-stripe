@@ -40,12 +40,16 @@ exports.handler = async () => {
       console.log(response.ref)
     })*/
 
+    var parseResultado = link.url;
+    console.log(parseResultado);
+    var parseR = JSON.stringify(parseResultado);
+    console.log(parseR);
 
     return {
       statusCode: 200,
       //body: `La clave de stripe es: ${mySecret} \n ${mySecret1} \n ${mySecret2} \n ${createP}`,
       //body: `Respuesta Query faunaDB: ${JSON.stringify(respuesta[0])}`,
-      body: `Respuesta Query en PARALELO: ${JSON.stringify(link)} \n ${JSON.stringify(stripeID[0])}`,
+      body: `Respuesta Query en PARALELO: ${JSON.stringify(link)} \n ${JSON.stringify(stripeID)} \n ${parseR} \n ${parseResultado}`,
     };
 };
 
