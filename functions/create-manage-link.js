@@ -30,15 +30,15 @@ exports.handler = async (_event, context) => {
   });*/
 
   const { stripeID } = JSON.stringify(respuesta[0]);//result.data.getUserByNetlifyID;
-  console.log(stripeID);
-  /*const link = await stripe.billingPortal.sessions.create({
+  
+  const link = await stripe.billingPortal.sessions.create({
     customer: stripeID,
     return_url: process.env.URL,
-  });*/
+  });
 
   return {
     statusCode: 200,
-    body: `Respuesta Query faunaDB: ${JSON.stringify(respuesta[0])}`,
+    body: `Respuesta Query faunaDB: ${stripeID}`,
     //body: JSON.stringify(link.url),
   };
 };
