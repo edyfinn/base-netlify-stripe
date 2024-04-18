@@ -51,17 +51,17 @@ exports.handler = async (_event, context) => {
 };
 
 async function Promise1(cliente) {
-  /*return new Promise((resolve,reject) => {
+  return new Promise((resolve,reject) => {
     setTimeout(() => {
     console.log("Number1 is done");
     resolve(10);
     },1000);
- });*/
-  const link = stripe.billingPortal.sessions.create({
+ });
+  /*const link = stripe.billingPortal.sessions.create({
     customer: 'cus_PwYnbMVoqWrrvc',
     return_url: process.env.URL,
   });
-  return link;
+  return link;*/
 }
 
 async function Promise2() {
