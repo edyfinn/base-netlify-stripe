@@ -41,19 +41,7 @@ var q = faunaDB.query;
   /*const respuesta = await  client.query(
     q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: 'testValue' , stripeID: 'Testeo' } })
   );
-  alert(respuesta);*/
-
-    /*const upsertCollectionQuery = fql`
-    if (${collectionExists(collectionName)}) {
-      "Collection already exists"
-    } else {
-      Collection.create({ name: ${collectionName} })
-      "Collection created"
-    }
-    `;
-    // Run the query
-    const response = await client.query(upsertCollectionQuery);
-    console.log(response.data);
+  alert(respuesta);
 
     client.close();*/
  };

@@ -1,3 +1,4 @@
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const fetch = require('node-fetch');
 const faunaDB = require('faunadb');
 var q = faunaDB.query;
@@ -22,11 +23,12 @@ exports.handler = async () => {
     });
 
     let respuesta = await client.query(
-      q.Select('data', q.Paginate(q.Match(q.Index('getUsuarioNetlifyID'), '43be6508-e3b1-4349-9d54-379e403ee7b3')))
+      q.Select('data', q.Paginate(q.Match(q.Index('getUsuarioNetlifyID'), 'ba31a0e6-dac9-425a-9b46-246dfd4e906f')))
     );
     //usuario = JSON.stringify(usuarioStripe);
     //console.log(JSON.stringify(respuesta[0]));
-
+    var prueba = 'testeo';
+    const [link,Promise1Result] = await Promise.allSettled([Promise1(prueba), Promise2()]);
     
     //console.log("respuesta: ", respuesta);
 
@@ -42,7 +44,47 @@ exports.handler = async () => {
     return {
       statusCode: 200,
       //body: `La clave de stripe es: ${mySecret} \n ${mySecret1} \n ${mySecret2} \n ${createP}`,
-      body: `Respuesta Query faunaDB: ${JSON.stringify(respuesta[0])}`,
+      //body: `Respuesta Query faunaDB: ${JSON.stringify(respuesta[0])}`,
+      body: `Respuesta Query en PARALELO: ${JSON.stringify(link)}`,
     };
-  };
+};
+
+async function Promise1(cliente) {
+  /*return new Promise((resolve,reject) => {
+    setTimeout(() => {
+    console.log("Number1 is done");
+    resolve(10);
+    },1000);
+ });*/
+ console.log(cliente);
+  const link = await stripe.billingPortal.sessions.create({
+    customer: 'cus_PwYnbMVoqWrrvc',
+    return_url: process.env.URL,
+  });
+  return link;
+}
+
+async function Promise2() {
+  return "Success!";
+}
+
+
+
+function printNumber1() {
+  return new Promise((resolve,reject) => {
+     setTimeout(() => {
+     console.log("Number1 is done");
+     resolve(10);
+     },1000);
+  });
+}
+
+function printNumber2() {
+  return new Promise((resolve,reject) => {
+     setTimeout(() => {
+     console.log("Number2 is done");
+     resolve(20);
+     },500);
+  });
+}
 
