@@ -6,7 +6,7 @@ var q = faunaDB.query;
 exports.handler = async (_event, context) => {
   const { user } = context.clientContext;
 
-  const [stripeID, link] = await Promise.allSettled([getClienteStripe(user.sub), getLinkPago(stripeID)]);
+  const [stripeID] = await Promise.allSettled([getClienteStripe(user.sub)]);
 
   /*var client = new faunaDB.Client({
     secret: process.env.FAUNA_BD_STRIPE,
@@ -32,12 +32,12 @@ exports.handler = async (_event, context) => {
     },
   });*/
 
-  /*const { stripeID } = JSON.stringify(respuesta[0]);//result.data.getUserByNetlifyID;
+  //const { stripeID } = JSON.stringify(respuesta[0]);//result.data.getUserByNetlifyID;
   
   const link = await stripe.billingPortal.sessions.create({
-    customer: 'cus_PwYnbMVoqWrrvc',
+    customer: stripeID,
     return_url: process.env.URL,
-  });*/
+  });
 
   //const [someResult, anotherResult] = await Promise.all([printNumber1(), printNumber2()]);
   //const [link,Promise1Result] = await Promise.allSettled([Promise1(user.sub), Promise2()]);
