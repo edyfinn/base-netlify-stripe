@@ -21,15 +21,11 @@ exports.handler = async () => {
       scheme: 'https',
     });
 
-    var respuesta = await client.query(
-      
-          
-              q.Match(
-                  q.Index('getUsuarioNetlifyID'),'43be6508-e3b1-4349-9d54-379e403ee7b3'
-              )
-          
-      
+    let usuarioStripe = await client.query(
+      q.Select('data', q.Paginate(q.Match(q.Index('getUsuarioNetlifyID'), '43be6508-e3b1-4349-9d54-379e403ee7b3')))
     );
+    //usuario = JSON.stringify(usuarioStripe);
+    console.log(JSON.stringify(usuarioStripe[0]));
 
     
     //console.log("respuesta: ", respuesta);
