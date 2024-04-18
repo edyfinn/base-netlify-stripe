@@ -43,7 +43,7 @@ exports.handler = async (_event, context) => {
     },
   });*/
 
-  const { stripeID } = result.data.getUserByNetlifyID;
+  const { stripeID } = respuesta;//result.data.getUserByNetlifyID;
 
   const link = await stripe.billingPortal.sessions.create({
     customer: stripeID,
