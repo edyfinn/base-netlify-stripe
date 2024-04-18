@@ -22,14 +22,15 @@ exports.handler = async () => {
     });
 
     var respuesta = await client.query(
-      q.Map(
-          q.Paginate(
+      
+          
               q.Match(
-                  q.Index('getUsuarioNetlifyID'), '43be6508-e3b1-4349-9d54-379e403ee7b3')
-          ),
-          (usuariosbuenosRef) => q.Get(q.Var(usuariosbuenosRef))
-      )
+                  q.Index('getUsuarioNetlifyID'),'43be6508-e3b1-4349-9d54-379e403ee7b3'
+              )
+          
+      
     );
+
     
     //console.log("respuesta: ", respuesta);
 
