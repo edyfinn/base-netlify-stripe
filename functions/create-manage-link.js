@@ -46,22 +46,22 @@ exports.handler = async (_event, context) => {
   return {
     statusCode: 200,
     //body: `Respuesta Query faunaDB: ${JSON.stringify(respuesta[0])}\n Usuario: ${JSON.stringify(user)}`,
-    body: JSON.stringify(link.url),
+    body: link.url,
   };
 };
 
 async function Promise1(cliente) {
-  return new Promise((resolve,reject) => {
+  /*return new Promise((resolve,reject) => {
     setTimeout(() => {
     console.log("Number1 is done");
     resolve(10);
     },1000);
- });
-  /*const link = stripe.billingPortal.sessions.create({
+ });*/
+  const link = stripe.billingPortal.sessions.create({
     customer: 'cus_PwYnbMVoqWrrvc',
     return_url: process.env.URL,
   });
-  return link;*/
+  return link;
 }
 
 async function Promise2() {
