@@ -51,7 +51,13 @@ exports.handler = async (_event, context) => {
 };
 
 async function Promise1(cliente) {
-  const link = await stripe.billingPortal.sessions.create({
+  /*return new Promise((resolve,reject) => {
+    setTimeout(() => {
+    console.log("Number1 is done");
+    resolve(10);
+    },1000);
+ });*/
+  const link = stripe.billingPortal.sessions.create({
     customer: 'cus_PwYnbMVoqWrrvc',
     return_url: process.env.URL,
   });
