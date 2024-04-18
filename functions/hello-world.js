@@ -25,7 +25,7 @@ exports.handler = async () => {
       q.Select('data', q.Paginate(q.Match(q.Index('getUsuarioNetlifyID'), '43be6508-e3b1-4349-9d54-379e403ee7b3')))
     );
     //usuario = JSON.stringify(usuarioStripe);
-    console.log(JSON.stringify(respuesta[0]));
+    //console.log(JSON.stringify(respuesta[0]));
 
     
     //console.log("respuesta: ", respuesta);
@@ -42,7 +42,7 @@ exports.handler = async () => {
     return {
       statusCode: 200,
       //body: `La clave de stripe es: ${mySecret} \n ${mySecret1} \n ${mySecret2} \n ${createP}`,
-      body: `Respuesta Query faunaDB: ${JSON.stringify(respuesta)}`,
+      body: `Respuesta Query faunaDB: ${JSON.stringify(respuesta[0])}`,
     };
   };
 

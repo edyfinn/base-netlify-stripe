@@ -12,23 +12,9 @@ exports.handler = async (_event, context) => {
     scheme: 'https',
   });
 
-  /*var createP = client.query(
-    q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: 'Cliente_Netlify_hola' , stripeID: 'Cliente_Sprite_hola' } })
-  );*/
-
-  console.log("Usuario: " + user.sub);
-  var respuesta = await client.query(
-    q.Map(
-        q.Paginate(
-            q.Match(
-                q.Index('getUsuarioNetlifyID'),
-                ['netlifyID',user.sub]
-            )
-        ),
-        q.Lambda('stripeID', q.Get(q.Var('stripeID')))
-    )
+  let respuesta = await client.query(
+    q.Select('data', q.Paginate(q.Match(q.Index('getUsuarioNetlifyID'), '43be6508-e3b1-4349-9d54-379e403ee7b3')))
   );
-  console.log("respuesta: ", respuesta);
 
   /*const result = await faunaFetch({
     query: `
@@ -43,7 +29,7 @@ exports.handler = async (_event, context) => {
     },
   });*/
 
-  const { stripeID } = respuesta;//result.data.getUserByNetlifyID;
+  const { stripeID } = JSON.stringify(respuesta[0]);//result.data.getUserByNetlifyID;
 
   const link = await stripe.billingPortal.sessions.create({
     customer: stripeID,
