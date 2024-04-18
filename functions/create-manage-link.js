@@ -7,7 +7,7 @@ exports.handler = async (_event, context) => {
   const { user } = context.clientContext;
 
   console.log(JSON.stringify(user.sub));
-  const [spriteID, link1] = await Promise.allSettled([getClienteStripe(user.sub), getLinkPago(user.sub)]);
+  const [spriteID, link1] = await Promise.allSettled([getClienteStripe(user.sub), getLinkPago(spriteID)]);
 
   console.log(spriteID);
   /*var client = new faunaDB.Client({
@@ -51,7 +51,7 @@ exports.handler = async (_event, context) => {
     statusCode: 200,
     //body: `Respuesta Query faunaDB: ${JSON.stringify(respuesta[0])}\n Usuario: ${JSON.stringify(user)}`,
     //body: JSON.stringify(link1.value.url),
-    body: JSON.stringify(link1.value.url),
+    body: JSON.stringify(user.sub),
   };
 };
 
@@ -80,7 +80,7 @@ async function getClienteStripe(id_netlify) {
     customer: parseID,
     return_url: process.env.URL,
   });*/
-  return id_netlify;
+  return parseID;
 
   //console.log(JSON.stringify(respuesta[0]))
   //return JSON.stringify(respuesta.value[0]);
