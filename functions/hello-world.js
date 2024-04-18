@@ -2,14 +2,14 @@ const fetch = require('node-fetch');
 const faunaDB = require('faunadb');
 var q = faunaDB.query;
 
-exports.handler = async (_event, context) => {
+exports.handler = async () => {
     /*return {
       statusCode: 200,
       body: "Hola Mundo Cruel!"
     };*/
 
-    const { user } = context.clientContext;
-    console.log("Usuario: " + user.sub);
+    /*const { user } = context.clientContext;
+    console.log("Usuario: " + user.sub);*/
 
     const mySecret = process.env.STRIPE_SECRET_KEY;
     const mySecret1 = process.env.FAUNA_SERVER_KEY_V10
@@ -26,7 +26,7 @@ exports.handler = async (_event, context) => {
           q.Paginate(
               q.Match(
                   q.Index('getUsuarioNetlifyID'),
-                  ['netlifyID',user.sub]
+                  ['netlifyID','43be6508-e3b1-4349-9d54-379e403ee7b3']
               )
           ),
           q.Lambda('stripeID', q.Get(q.Var('stripeID')))
