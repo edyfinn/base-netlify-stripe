@@ -22,15 +22,16 @@ exports.handler = async () => {
     });
 
     var respuesta = await client.query(
-      
-          
+      q.Map(
+          q.Paginate(
               q.Match(
                   q.Index('getUsuarioNetlifyID'),'43be6508-e3b1-4349-9d54-379e403ee7b3'
               )
-          
-      
+          ),
+          q.Lambda('stripeID', q.Get(q.Var('stripeID')))
+      )
     );
-    //console.log("respuesta: ", respuesta);
+    console.log("respuesta: ", respuesta);
 
     /*var createP = client.query(
       q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: 'Cliente_Netlify_hola' , stripeID: 'Cliente_Sprite_hola' } })
