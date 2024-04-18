@@ -21,7 +21,7 @@ exports.handler = async () => {
       scheme: 'https',
     });
 
-    var respuesta = client.query(
+    var respuesta = await client.query(
       q.Map(
           q.Paginate(
               q.Match(
@@ -46,7 +46,7 @@ exports.handler = async () => {
     return {
       statusCode: 200,
       //body: `La clave de stripe es: ${mySecret} \n ${mySecret1} \n ${mySecret2} \n ${createP}`,
-      body: `La clave de stripe NO SE MUESTRA: ${respuesta}`,
+      body: `La clave de stripe NO SE MUESTRA: ${JSON.stringify(respuesta)}`,
     };
   };
 
