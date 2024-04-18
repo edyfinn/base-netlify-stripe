@@ -21,7 +21,7 @@ exports.handler = async () => {
       scheme: 'https',
     });
 
-    var respuesta = await client.query(
+    var respuesta = client.query(
       q.Map(
           q.Paginate(
               q.Match(
