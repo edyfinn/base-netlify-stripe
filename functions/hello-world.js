@@ -45,7 +45,7 @@ exports.handler = async () => {
       statusCode: 200,
       //body: `La clave de stripe es: ${mySecret} \n ${mySecret1} \n ${mySecret2} \n ${createP}`,
       //body: `Respuesta Query faunaDB: ${JSON.stringify(respuesta[0])}`,
-      body: `Respuesta Query en PARALELO: ${JSON.stringify(link.url)} \n ${stripeID}`,
+      body: `Respuesta Query en PARALELO: ${JSON.stringify(link)} \n ${JSON.stringify(stripeID[0])}`,
     };
 };
 
@@ -69,7 +69,7 @@ async function getClienteStripe() {
     q.Select('data', q.Paginate(q.Match(q.Index('getUsuarioNetlifyID'), 'ba31a0e6-dac9-425a-9b46-246dfd4e906f')))
   );
   console.log(JSON.stringify(respuesta[0]))
-  return JSON.stringify(respuesta[0]);
+  return respuesta;
 }
 
 
