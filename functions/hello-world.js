@@ -25,14 +25,11 @@ exports.handler = async () => {
       q.Map(
           q.Paginate(
               q.Match(
-                  q.Index('getUsuarioNetlifyID'),
-                  ['data.netlifyID','43be6508-e3b1-4349-9d54-379e403ee7b3']
-              )
+                  q.Index('getUsuarioNetlifyID'), '43be6508-e3b1-4349-9d54-379e403ee7b3')
           ),
-          q.Lambda('usuariosbuenosRef', q.Get(q.Var('usuariosbuenosRef')))
+          (usuariosbuenosRef) => q.Get(q.Var(usuariosbuenosRef))
       )
     );
-
     
     //console.log("respuesta: ", respuesta);
 
