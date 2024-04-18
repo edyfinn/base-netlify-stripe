@@ -40,16 +40,12 @@ exports.handler = async () => {
       console.log(response.ref)
     })*/
 
-    var parseResultado = link.url;
-    console.log(parseResultado);
-    var parseR = JSON.stringify(parseResultado);
-    console.log(parseR);
-
     return {
       statusCode: 200,
       //body: `La clave de stripe es: ${mySecret} \n ${mySecret1} \n ${mySecret2} \n ${createP}`,
       //body: `Respuesta Query faunaDB: ${JSON.stringify(respuesta[0])}`,
-      body: `Respuesta Query en PARALELO: ${JSON.stringify(link.value.url)} \n ${JSON.stringify(stripeID)} \n ${stripeID} \n ${parseResultado}`,
+      body: `Respuesta Query en PARALELO: ${JSON.stringify(link.value.url)} \n ${JSON.stringify(stripeID)} \n ${stripeID} 
+            \n ${JSON.stringify(stripeID.value[0])} \n ${JSON.stringify(stripeID)}`,
     };
 };
 
@@ -69,11 +65,17 @@ async function getLinkPago(cliente) {
 }
 
 async function getClienteStripe() {
+  var client = new faunaDB.Client({
+    secret: process.env.FAUNA_BD_STRIPE,
+    domain: 'db.eu.fauna.com',
+    scheme: 'https',
+  });
+
   const respuesta = await client.query(
     q.Select('data', q.Paginate(q.Match(q.Index('getUsuarioNetlifyID'), 'ba31a0e6-dac9-425a-9b46-246dfd4e906f')))
   );
-  console.log(JSON.stringify(respuesta[0]))
-  return respuesta[0];
+  //console.log(JSON.stringify(respuesta[0]))
+  return respuesta;
 }
 
 
