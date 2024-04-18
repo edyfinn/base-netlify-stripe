@@ -29,7 +29,7 @@ exports.handler = async () => {
                   ['data.netlifyID','43be6508-e3b1-4349-9d54-379e403ee7b3']
               )
           ),
-          q.Lambda('stripeID', q.Get(q.Var('stripeID')))
+          q.Lambda('data.stripeID', q.Get(q.Var('data.stripeID')))
       )
     );
     //console.log("respuesta: ", respuesta);
