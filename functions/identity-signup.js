@@ -50,8 +50,6 @@ exports.handler = async (event) => {
     q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: user.id , stripeID: customer.id } })
   );
 
-  
-  //await faunaFetch();
 
   return {
     statusCode: 200,

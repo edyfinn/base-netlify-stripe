@@ -1,5 +1,5 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const { faunaFetch } = require('./utils/fauna');
+const { faunaConexion, faunaFetch } = require('./utils/fauna');
 const faunaDB = require('faunadb');
 var q = faunaDB.query;
 
@@ -21,13 +21,14 @@ exports.handler = async (_event, context) => {
 
 
 async function getClienteStripe(id_netlify) {
-  var client = new faunaDB.Client({
+  /*var client = new faunaDB.Client({
     secret: process.env.FAUNA_BD_STRIPE,
     domain: 'db.eu.fauna.com',
     scheme: 'https',
-  });
+  });*/
 
-  const respuesta = await client.query(
+  var cliente = await faunaConexion();
+  const respuesta = await cliente.query(
     q.Select('data', q.Paginate(q.Match(q.Index('getUsuarioNetlifyID'), id_netlify)))
   );
 
