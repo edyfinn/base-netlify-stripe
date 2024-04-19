@@ -12,6 +12,20 @@ exports.faunaConexion = async () => {
   return client;
 }
 
+exports.queryStripeCliente = async (idNetlify) => {
+  var client = new faunaDB.Client({
+    secret: process.env.FAUNA_BD_STRIPE,
+    domain: 'db.eu.fauna.com',
+    scheme: 'https',
+  });
+
+  const respuesta = await client.query(
+    q.Select('data', q.Paginate(q.Match(q.Index('getUsuarioNetlifyID'), idNetlify)))
+  );
+
+  return respuesta;
+}
+
  exports.faunaFetch = async ({ /*query, variables*/ }) => {
   
   /*var datos = JSON.stringify({

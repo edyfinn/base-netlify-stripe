@@ -1,5 +1,5 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const { faunaConexion, faunaFetch } = require('./utils/fauna');
+const { queryStripeCliente, faunaConexion, faunaFetch } = require('./utils/fauna');
 const faunaDB = require('faunadb');
 var q = faunaDB.query;
 
@@ -27,10 +27,11 @@ async function getClienteStripe(id_netlify) {
     scheme: 'https',
   });*/
 
-  var cliente = await faunaConexion();
-  const respuesta = await cliente.query(
+  /*var cliente = await faunaConexion();
+  const respuesta1 = await cliente.query(
     q.Select('data', q.Paginate(q.Match(q.Index('getUsuarioNetlifyID'), id_netlify)))
-  );
+  );*/
+  const respuesta = await queryStripeCliente(id_netlify);
 
   //var parseID = JSON.stringify(respuesta.value[0]);
   const link = await stripe.billingPortal.sessions.create({
