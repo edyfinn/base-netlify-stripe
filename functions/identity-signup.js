@@ -28,9 +28,9 @@ exports.handler = async (event) => {
 
 
   //Conexión faunaDB
-  await queryCrearNetIDStripeID(user.id, customer.id);
+  //await queryCrearNetIDStripeID(user.id, customer.id);
 
-  /*var client = new faunaDB.Client({
+  var client = new faunaDB.Client({
     secret: process.env.FAUNA_BD_STRIPE,
     domain: 'db.eu.fauna.com',
     scheme: 'https',
@@ -39,7 +39,7 @@ exports.handler = async (event) => {
   // store the Netlify and Stripe IDs in Fauna
   await client.query(
     q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: user.id , stripeID: customer.id } })
-  );*/
+  );
 
 
   return {
