@@ -6,6 +6,7 @@ exports.handler = async (_event, context) => {
   //Usuario netlify
   const { user } = context.clientContext;
 
+  //Enlace a web de pago.
   var enlace = await crearLinkManager(user.sub);
 
   return {
@@ -16,9 +17,10 @@ exports.handler = async (_event, context) => {
 
 
 async function crearLinkManager(id_netlify) {
-  
+  //Recupera id del cliente en stripe con el id del cliente en netlify.
   const clienteID = await queryStripeCliente(id_netlify);
-
+  
+  //Crea enlace de este cliente a la pagina de pago de stripe
   const link = await stripe.billingPortal.sessions.create({
     customer: clienteID[0],
     return_url: process.env.URL,
