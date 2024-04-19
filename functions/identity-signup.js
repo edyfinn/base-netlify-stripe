@@ -28,7 +28,7 @@ exports.handler = async (event) => {
 
 
   //Conexión faunaDB
-  queryCrearNetIDStripeID(user.id, customer.id);
+  await queryCrearNetIDStripeID(user.id, customer.id);
 
   /*var client = new faunaDB.Client({
     secret: process.env.FAUNA_BD_STRIPE,
