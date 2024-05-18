@@ -9,7 +9,7 @@ exports.handler = async (event) => {
   // create a new customer in Stripe
   const customer = await stripe.customers.create({ name: user.user_metadata.full_name, email: user.email, });
 
-  // subscribe the new customer to the plan con 10 días de prueba
+  // subscribe the new customer to the plan con 14 días de prueba
   await stripe.subscriptions.create({
     customer: customer.id,
     items: [
@@ -17,7 +17,7 @@ exports.handler = async (event) => {
         price: process.env.STRIPE_BASE_PLAN,
       },
     ],
-    trial_period_days: 10,
+    trial_period_days: 14,
     trial_settings:
      {
       end_behavior: {

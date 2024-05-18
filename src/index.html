@@ -1,77 +1,19 @@
-<style>
-  h1 {
-    text-align: center;
-  }
 
-  .user-info {
-    align-items: center;
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(2, 1fr);
-    list-style: none;
-    padding: 0;
-  }
 
-  .user-info button {
-    background: var(--dark-gray);
-    border: 0;
-    border-radius: 0.5rem;
-    color: var(--white);
-    display: block;
-    font-family: var(--font-family);
-    font-size: 1.5rem;
-    font-weight: 900;
-    padding: 1rem;
-    text-align: center;
-    text-decoration: none;
-  }
-
-  .corgi-content {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .content h2 {
-    font-size: 1.25rem;
-    text-align: center;
-  }
-
-  .content-display {
-    margin: 0;
-  }
-
-  .credit {
-    display: block;
-    font-size: 0.75rem;
-  }
-
-  .content img {
-    width: 100%;
-  }
-</style>
-
-<h1>Sign Up for Premium TheSubsPlugin Content</h1>
-
-<div class="user-info">
-  <button id="left">Log In</button>
-  <button id="right">Sign Up</button>
-</div>
-
-<div class="corgi-content">
-  <div class="content">
-    <h2>Base Content</h2>
-    <div class="base"></div>
+<div class="container">
+  <div class="left">
+    <h1>Here you can manage your subscription</h1>
+    <p>If you have any further questions always feel free to contact us!</p>
+    <div class="user-info">
+      <button id="left">Log In</button>
+      <button class="outline" id="right">Sign Up</button>
+    </div>
   </div>
-  <div class="content">
-    <h2>Free Content</h2>
-    <div class="pro"></div>
-  </div>
-  <div class="content">
-    <h2>Premium Content</h2>
-    <div class="premium"></div>
+  <div class="right">
+    <img src="/images/231127_FeatureImage_11.png" alt="Subscription Image">
   </div>
 </div>
+
 
 <template id="content">
   <figure class="content-display">
@@ -109,13 +51,8 @@
     container.innerHTML = '';
 
     if (user) {
-      b1.innerText = 'Log Out';
+      b1.innerText = 'Manage Subscription';
       b1.addEventListener('click', () => {
-        netlifyIdentity.logout();
-      });
-
-      b2.innerText = 'Manage Subscription';
-      b2.addEventListener('click', () => {
         // TODO handle subscription management
         fetch('/.netlify/functions/create-manage-link', {
           method: 'POST',
@@ -128,6 +65,11 @@
             window.location.href = link;
           })
           .catch((err) => console.error(err));
+      });
+
+      b2.innerText = 'Log Out';
+      b2.addEventListener('click', () => {
+        netlifyIdentity.logout();
       });
     } else {
       // if no one is logged in, show login/signup options
