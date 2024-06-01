@@ -21,11 +21,11 @@
 
 html, body {
   background: var(--white);
-  color: var(--gray);
   font-family: var(--font-family);
   margin: 0;
   padding: 0;
   height: 100%;
+  font-size: 16px;
 }
 
 body {
@@ -68,7 +68,7 @@ body {
 
 .container {
   display: flex;
-  height: 100vh; /* 80% of the viewport height */
+  min-height: 100vh; /* 80% of the viewport height */
  
 }
 
@@ -87,15 +87,28 @@ h1 {
   text-align: center;
   padding: 0;
   margin: 0;
+  max-width: 80%;
 }
 
-p {
+h2 {
   font-size: 18px;
   font-weight: 400;
   color: var(--black);
   text-align: center;
   padding: 0;
   margin: 0;
+  max-width: 80%;
+}
+
+
+p {
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
 }
 
 .user-info {
@@ -150,10 +163,14 @@ p {
   object-fit: cover;
 }
 
+.left {
+  padding: 120px 0px;
+}
+
 
 
 /* Media query for mobile devices */
-@media (max-width: 900px) {
+@media (max-width: 1150px) {
   .container {
     flex-direction: column;
     align-items: center;
@@ -170,14 +187,6 @@ p {
     text-align: center;
   }
 
-  h1 {
-    size: 15px;
-  }
-
-  p {
-    size: 12px;
-    
-  }
 
   .user-info {
     flex-direction: column;
@@ -197,4 +206,93 @@ p {
     width: 80%;
     gap: 0.5rem;
   }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 15px;
+    
+  }
+
+  p {
+    font-size: 12px;
+    
+  }
+
+  .user-info button {
+    font-size: 14px;
+  }
+}
+
+#logged-container {
+  width: 90%;
+  margin-top: 40px;
+  text-align: left;
+}
+
+.column {
+  border-radius: 8px;
+  background-color: #F0F0F0;
+  display: flex;
+  flex-direction: row; /* Changed to column to make it vertical */
+  padding: 10px 20px;
+  margin: 10px 0px; 
+  column-gap: 10px;
+}
+
+.download-btn {
+  font-size: 12px;
+  text-decoration: none;
+  color: #8E03F4;
+  border: #8E03F4 solid 1px;
+  border-radius: 3px;
+  padding: 2px 5px;
+  align-self: flex-end;
+  margin-left: auto;
+  margin-bottom: auto;
+  white-space: nowrap;
+}
+
+.download-btn:hover {
+  background-color: #8E03F4;
+  color: #F0F0F0;
+}
+
+.toggle-explain {
+  cursor: pointer;
+  font-weight:600;
+}
+
+#chevronzxp{
+  padding-right: 5px;
+}
+
+#chevronzip{
+  padding-right: 5px;
+}
+
+.explanation {
+  padding-left: 19px;
+}
+
+.list {
+  margin: 0px;
+  padding-left: 19px;
+  padding-top: 8px;
+  line-height: 24px;
+}
+
+.note{
+  font-weight: 400;
+  font-size: 10px;
+  background-color: #9003f421;
+  padding: 2px 5px;
+  border-radius: 3px;
+  margin-left: 5px;
+}
+
+li {
+  padding-top: 5px;
 }
