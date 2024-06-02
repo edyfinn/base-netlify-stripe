@@ -35,7 +35,6 @@ body {
 .lwj-demo-header {
   background: transparent;
   color: black;
-  position: absolute;
   top: 0;
   width: 100%;
   z-index: 1000;
@@ -220,6 +219,11 @@ a {
     font-size: 12px;
     
   }
+  
+  li {
+    font-size: 12px;
+    line-height: 18px;
+  }
 
   .user-info button {
     font-size: 14px;
@@ -235,8 +239,6 @@ a {
 .column {
   border-radius: 8px;
   background-color: #F0F0F0;
-  display: flex;
-  flex-direction: row; /* Changed to column to make it vertical */
   padding: 10px 20px;
   margin: 10px 0px; 
   column-gap: 10px;
@@ -265,16 +267,24 @@ a {
   font-weight:600;
 }
 
-#chevronzxp{
+#chevronzxp {
+  display: flex; /* Use flexbox */
+  align-items: center; /* Vertically center items */
+  justify-content: center; /* Horizontally center items */
   padding-right: 5px;
+  font-size: 16px;
 }
 
 #chevronzip{
+  display: flex; /* Use flexbox */
+  align-items: center; /* Vertically center items */
+  justify-content: center; /* Horizontally center items */
   padding-right: 5px;
+  font-size: 16px;
 }
 
 .explanation {
-  padding-left: 19px;
+ 
 }
 
 .list {
@@ -295,4 +305,9 @@ a {
 
 li {
   padding-top: 5px;
+}
+
+.exp-container {
+  display: flex;
+  flex-direction: row; /* Changed to column to make it vertical */
 }
