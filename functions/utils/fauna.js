@@ -19,7 +19,7 @@ exports.queryCrearNetIDStripeID = async (idNet, idSprite) => {
   });
 
   await clientFauna.query(
-    q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: idNet , stripeID: idSprite, sesion: 1 } })
+    q.Create(q.Collection('UsuariosBuenos'), { data: { netlifyID: idNet , stripeID: idSprite, sesion: 0 } })
   );
 
 }
