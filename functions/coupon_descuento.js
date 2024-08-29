@@ -29,7 +29,6 @@ exports.handler = async (event, context) => {
 
 
 async function descuentoSubs(id_netlify, coupon) {
-  alert("test")
   //Recupera id del cliente en stripe con el id del cliente en netlify.
   const clienteID = await queryStripeCliente(id_netlify);
   console.log("Creando Enlace para: ", clienteID[0], " cupón: ", coupon);

@@ -219,9 +219,10 @@
 
 
   const coupbutton = document.getElementById('coupon');
-  const cuponTXT = document.getElementById('cupontxt');
+  const couponTXT = document.getElementById('coupontxt');
 
   coupbutton.addEventListener('click', () => {
+    alert("start")
         
         /*fetch('/.netlify/functions/cupon_descuento', {
          method: 'POST',
@@ -240,7 +241,7 @@
          headers: {
            Authorization: `Bearer ${user.token.access_token}`,
          },
-         body: JSON.stringify(cuponTXT.value),
+         body: JSON.stringify(couponTXT.value),
        })
          .then((response) => {
            console.log("respuesta: ", response.status);
