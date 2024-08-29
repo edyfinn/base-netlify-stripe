@@ -48,6 +48,12 @@
           </ol>
         </div>
         </div>
+        
+        <div class="coupon-cont">
+        <input type="text" id="coupontxt" placeholder="your code"></input>
+        <button id="coupon">apply coupon</button>
+        </div>
+
     </div>
 
     <div class="user-info">
@@ -210,6 +216,47 @@
     updateUserInfo(user);
     loadSubscriptionContent(user);
   };
+
+
+  const coupbutton = document.getElementById('coupon');
+  const cuponTXT = document.getElementById('cupontxt');
+
+  coupbutton.addEventListener('click', () => {
+        
+        /*fetch('/.netlify/functions/cupon_descuento', {
+         method: 'POST',
+         headers: {
+           Authorization: `Bearer ${user.token.access_token}`,
+         },
+         body: JSON.stringify(cuponTXT.value),
+       })
+         .then(response => console.log("respuesta: ", response))
+         .then(obj => console.log("Datos: ", obj));*/
+
+       //console.log("Click botón 3, usuario: ", user.id, " CuponTXT: ", cuponTXT.value);
+       // Aplica cupón
+       fetch('/.netlify/functions/coupon_descuento', {
+         method: 'POST',
+         headers: {
+           Authorization: `Bearer ${user.token.access_token}`,
+         },
+         body: JSON.stringify(cuponTXT.value),
+       })
+         .then((response) => {
+           console.log("respuesta: ", response.status);
+           if(response.status === 200){
+             alert("Discount applied to your sucbsription!");
+           } else {
+             alert("The coupon code is not valid.");
+           }
+         })
+         .then((data) => {
+           console.log("subscriptionU: ", data);
+           let datos = data;
+           console.log("Datos: ", datos );
+         })
+         .catch((err) => console.error(err));
+     });
 
   netlifyIdentity.on('init', handleUserStateChange);
   netlifyIdentity.on('login', handleUserStateChange);

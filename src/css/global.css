@@ -283,9 +283,6 @@ a {
   font-size: 16px;
 }
 
-.explanation {
- 
-}
 
 .list {
   margin: 0px;
@@ -310,4 +307,46 @@ li {
 .exp-container {
   display: flex;
   flex-direction: row; /* Changed to column to make it vertical */
+}
+
+.coupon-cont {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Vertically centers items */
+  justify-content: center; /* Horizontally centers items */
+  gap: 0px;
+  margin-top: 25px;
+}
+
+#coupon {
+  background: var(--purple);
+  border: none;
+  border-radius: 0 100px 100px 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 7px;
+  padding-top: 5px;
+  color: var(--white);
+  font-weight: 400;
+}
+
+#coupon:hover {
+  cursor: pointer;
+  background: #3B3737;
+}
+
+
+#coupontxt {
+  width: 150px;
+  border: 1px solid var(--purple);
+  border-radius: 100px  0px 0px 100px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 6px;
+  padding-top: 4px;
+  text-align: center;
+}
+
+#coupontxt:focus {
+  outline: none;
 }
