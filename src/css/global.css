@@ -309,44 +309,49 @@ li {
   flex-direction: row; /* Changed to column to make it vertical */
 }
 
-.coupon-cont {
+.cupon-cont {
   display: flex;
   flex-direction: row;
   align-items: center; /* Vertically centers items */
   justify-content: center; /* Horizontally centers items */
   gap: 0px;
-  margin-top: 25px;
+  width: 100%;
 }
 
-#coupon {
+#cupon {
+  font-size: 16px;
   background: var(--purple);
   border: none;
   border-radius: 0 100px 100px 0;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 7px;
-  padding-top: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 6px;
+  padding-top: 3px;
   color: var(--white);
   font-weight: 400;
+  width: 40%;
+  box-sizing: border-box;
 }
 
-#coupon:hover {
+#cupon:hover {
   cursor: pointer;
   background: #3B3737;
 }
 
 
-#coupontxt {
-  width: 150px;
-  border: 1px solid var(--purple);
+#cupontxt {
+  font-size: 16px;
+  width: 60%;
+  border: 2px solid var(--purple);
   border-radius: 100px  0px 0px 100px;
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 6px;
   padding-top: 4px;
   text-align: center;
+  box-sizing: border-box;
 }
 
-#coupontxt:focus {
+#cupontxt:focus {
   outline: none;
 }
