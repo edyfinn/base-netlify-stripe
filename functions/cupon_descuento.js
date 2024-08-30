@@ -64,13 +64,13 @@ async function descuentoSubs(id_netlify, cupon) {
   console.log(cupon === 'ByJulian20'); // true
   */
  
-  if(JSON.parse(cupon) == "JulianByt20"){
+  if(JSON.parse(cupon) == "ByJulian20"){
     const subscriptionU = await stripe.subscriptions.update(
       subscription.data[0].id,
       {
         discounts: [
           {
-            coupon: 'JulianByt20', //promo_1PtWqMGAVjNy5dcW6Z3XjYuQ
+            coupon: 'ByJulian20', //promo_1PtWqMGAVjNy5dcW6Z3XjYuQ
           },
         ],
       }
