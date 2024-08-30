@@ -12,7 +12,7 @@ exports.handler = async (event, context) => {
   const { user } = context.clientContext;
   console.log("Dentro ", user.sub);
   console.log("ValorCupon: ", event.body);
-  var cupontTXT = event.body;
+  var cupontTXT = JSON.parse(event.body);
   /*const { user } = context.clientContext;
   console.log("usuario: ", user.sub);
   var descuentoAplicado = await descuentoSubs(user.sub);*/
@@ -64,13 +64,13 @@ async function descuentoSubs(id_netlify, cupon) {
   console.log(cupon === 'ByJulian20'); // true
   */
  
-  if(JSON.parse(cupon) == "JulianBy20"){
+  if(JSON.parse(cupon) == "JulianByt20"){
     const subscriptionU = await stripe.subscriptions.update(
       subscription.data[0].id,
       {
         discounts: [
           {
-            coupon: 'JulianBy20', //promo_1PtWXIGAVjNy5dcWAHpf2hoY
+            coupon: 'JulianByt20', //promo_1PtWXIGAVjNy5dcWAHpf2hoY
           },
         ],
       }
