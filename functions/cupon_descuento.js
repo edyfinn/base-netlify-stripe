@@ -12,7 +12,7 @@ exports.handler = async (event, context) => {
   const { user } = context.clientContext;
   console.log("Dentro ", user.sub);
   console.log("ValorCupon: ", event.body);
-  var cupontTXT = JSON.parse(event.body);
+  var cupontTXT = event.body;
   /*const { user } = context.clientContext;
   console.log("usuario: ", user.sub);
   var descuentoAplicado = await descuentoSubs(user.sub);*/
