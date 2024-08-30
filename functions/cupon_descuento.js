@@ -70,7 +70,7 @@ async function descuentoSubs(id_netlify, cupon) {
       {
         discounts: [
           {
-            coupon: 'JulianByt20', //promo_1PtWXIGAVjNy5dcWAHpf2hoY
+            coupon: 'JulianByt20', //promo_1PtWqMGAVjNy5dcW6Z3XjYuQ
           },
         ],
       }
