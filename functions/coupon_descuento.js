@@ -1,4 +1,4 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY_TEST);
 const { queryStripeCliente } = require('./utils/fauna');
 
 var response = {
@@ -28,10 +28,10 @@ exports.handler = async (event, context) => {
 };
 
 
-async function descuentoSubs(id_netlify, coupon) {
+async function descuentoSubs(id_netlify, cupon) {
   //Recupera id del cliente en stripe con el id del cliente en netlify.
   const clienteID = await queryStripeCliente(id_netlify);
-  console.log("Creando Enlace para: ", clienteID[0], " cupón: ", coupon);
+  console.log("Creando Enlace para: ", clienteID[0], " cupón: ", cupon);
   var resUsuarioStri = clienteID[0];
 
   //console.log("descuentoSubs ", id_netlify);
@@ -64,7 +64,7 @@ async function descuentoSubs(id_netlify, coupon) {
   console.log(cupon === 'Friends20'); // true
   */
  
-  if(JSON.parse(coupon) == "ByJulian20"){
+  if(JSON.parse(cupon) == "ByJulian20"){
     const subscriptionU = await stripe.subscriptions.update(
       subscription.data[0].id,
       {
