@@ -1,4 +1,4 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY_TEST);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { queryStripeCliente } = require('./utils/fauna');
 
 var response = {
@@ -61,7 +61,7 @@ async function descuentoSubs(id_netlify, cupon) {
       ],
   });*/
   /*console.log("cuponTXT: ", JSON.parse(cupon));
-  console.log(cupon === 'Friends20'); // true
+  console.log(cupon === 'ByJulian20'); // true
   */
  
   if(JSON.parse(cupon) == "ByJulian20"){
